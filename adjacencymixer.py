@@ -30,11 +30,11 @@ class VecDyGeluSine(nn.Module):
         return x
 
 class GatedProjection(nn.Module):
-    def __init__(self,dim):
+    def __init__(self, dim):
 
         super().__init__()
 
-        self.proj =  nn.Linear(dim, dim, bias=False)
+        self.proj = nn.Linear(dim, dim, bias = False)
         self.modulate = VecDyGeluSine(dim)
 
     def forward(self, x):
@@ -54,7 +54,7 @@ class Mixer(nn.Module):
         self.src = GatedProjection(in_features)
         self.dst = GatedProjection(in_features)
         
-    def forward(self, x, temperature=0.2):
+    def forward(self, x, temperature = 0.2):
        
         src = self.src(x)
         dst = self.dst(x)
